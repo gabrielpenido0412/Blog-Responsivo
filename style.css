@@ -1,0 +1,236 @@
+html{
+    height: 100%;
+}
+body,ul,li,p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    font-size: 120%;
+    text-align: center;
+}
+.cabeçalho a{
+    text-decoration: none;
+    color: white;
+}
+.cabeçalho{
+    background-color:#727272;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: solid 1px lightgray;
+}
+.menu-principal{
+    display: flex;
+}
+.menu-principal li{
+    list-style: none;
+    margin-left: 10px;
+}
+main{
+    /*o width faz que 70% da página seja ocupada pelo main e os outros 30% pelo aside.Isso dá certo porque como usamos o float left nod dois, eles ocupam a mesma parte da página, o que permite fazermos essa divisão. */
+    width: 70%;
+    float: left;
+    background-color: lightpink;
+}
+/*Componente Post*/
+/*O padding só da uma ajustada nas medidas do post. O clear limpa as flutuações tanto da direita quando da esquerda, o que deixa as imagens ajustadas com o texto.*/
+.caixa-post{
+    clear: both;
+    padding: 10px 10px;
+}
+.thumbnail{
+    /*O block deixa nós jogarmos a imagem pra esquerda com o float*/
+    display:  block;
+    float: left;
+    margin-right: 10px;
+    max-width: 100%;
+}
+.titulo{
+    font-size: 120%;
+}
+.subtitulo{
+    color: darkred;
+    font-size: 80%;
+    margin-bottom: 10px ;
+}
+.caixa-post span:nth-child(3){
+    /*A pseudo classe :nht-child permite a alteração de um elemento especifico. Nesse caso estamos colocando cores, borda e ajustando medidas no terceiro span que está na caixa post.*/
+    background-color: lightblue;
+    color: white;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3px;
+}
+/*O aside não faz parte do componente post*/
+aside{
+    float: left;
+    width: 30%;
+    background-color: lightgrey;
+    padding-bottom: 100px;
+}
+/*Componente caixa de pesquisa*/
+.caixa-pesquisa{
+    margin: 20px;
+    margin-bottom: 30px;
+}
+.caixa-pesquisa h3{
+    margin-bottom: 10px;
+    font-size: 130%;
+}
+/*Componente categorias*/
+.caixa-categoria{
+    margin: 20px;
+}
+.caixa-categoria ul{
+    list-style: none;
+}
+.caixa-categoria a{
+    text-decoration: none;
+}
+.caixa-categoria h3{
+    margin-bottom: 10px;
+    font-size: 130%;
+}
+.caixa-categoria ul li{
+    font-size: 120%;
+}
+.grid{
+    display: grid;
+    /*Cria tres colunas com o mesmo fracionamento*/
+    grid-template-columns: repeat(3,1fr);
+    /*Espaçamento entre as colunas*/
+    grid-gap: 20px;
+    /*Tamanho máximo do viewport*/
+    max-width: 800px;
+    /*Margens*/
+    margin: 0 auto;
+    /*Espaçamento entre itens*/
+    padding: 10px;
+}
+@media screen and (max-width:1000px) {
+    .grid{
+        grid-template-columns: 1fr 1fr;
+    }
+    aside{
+        display: none;
+    }
+    main{
+        width: 100%;
+    }
+    
+}
+#menutoggle{
+    display: none;
+}
+.menu-icon{
+    display: none;
+}
+.caixa-pesquisa-mobile{
+    display: none;
+}
+.caixa-categoria-mobile{
+    display: none;
+}
+@media screen and (max-width:1000px){
+    .caixa-pesquisa-mobile{
+        display: inline;
+        width: 100%;
+        /*Alinhamos o texto no centro*/
+        text-align: center;
+        color: white;
+        height: 20%;
+    }
+    .caixa-categoria-mobile{
+        display: inline;
+        width: 100%;
+        /*Alinhamos o texto no centro*/
+        text-align: center;
+        color: white;
+    }
+    /*Isso deixa nosso menu fixo no mobile.Se rolarmos a página, o menu rola junto, sempre ficando fixo na parte de cima.*/
+    .cabeçalho{
+        position: fixed;
+        top: 0px;
+        width: 100%;
+    }
+    .cabeçalho nav{
+        /*Quando abrimos o menu no mobile, ele vai ocupar a página toda. Por isso, colocamos o display absolute e o width e height ocupando 100% da página*/
+        display: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .menu-principal{
+        /*Vamos mexer só com linhas, não precisamos de grid*/
+        display: flex;
+        position: fixed;
+        flex-wrap: wrap;
+        /*Alinhando o conteudo no centro*/
+        align-content: center;
+        /*Colando ele nas bordas da página*/
+        top: 0px;
+        left: 0px;
+        /*Fazendo ele ocupar a página toda*/
+        width: 100%;
+        height: 0%;
+        /*Cor translucida*/
+        background-color: rgba(0, 0, 0, 0.7);
+        /*Tudo que ficar que ficar maior que o meu vai ser escondido*/
+        overflow: hidden;
+        transition: height 0.3s;
+        /*Pra arrumar pra todos os navegadores, na internet a gente acha códigos disso.*/
+        -webkit-transition: height 0.3s ;
+        -moz-transition: height 0.3s ;
+        -o-transition: height 0.3s ;
+    }
+    .menu-principal li{
+        /*Isso faz cada item ficar embaixo do outro*/
+        display: block;
+        /*Ele tem que ocupar 100% da pagina*/
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .menu-principal li a{
+        /*Os links ocupam uma linha cada um*/
+        display: block;
+        width: 100%;
+        /*Alinhamos o texto no centro*/
+        text-align: center;
+    }
+    .menu-icon{
+        display: block;
+        color: white;
+        width: 50px;
+        height: inherit;
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        line-height: 60px;
+        z-index: 999;
+    }
+    .menu-icon i{
+        font-size: 1.7em;
+    }
+    #menutoggle:checked ~ label i:nth-child(2){
+        display: block;
+    }
+    #menutoggle:checked ~ label i:first-child{
+        display: none;
+    }
+    #menutoggle:not(checked) ~ label i:first-child{
+        display: block;
+    }
+    #menutoggle:not(checked) ~ label i:nth-child(2){
+        display: none;
+    }
+    #menutoggle:checked ~ ul{
+        height: 100%;
+    }
+
+}
+
